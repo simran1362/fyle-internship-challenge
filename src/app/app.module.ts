@@ -7,13 +7,15 @@ import { SearchComponent } from './components/search/search.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RepoviewComponent } from './components/repoview/repoview.component';
 import { FormsModule } from '@angular/forms';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     DashboardComponent,
-    RepoviewComponent
+    RepoviewComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
