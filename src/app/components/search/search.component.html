@@ -1,7 +1,7 @@
 <div class="relative isolate w-screen bg-gray-900 py-16 sm:py-24 lg:py-32">
   <div class="mx-auto px-12 flex flex-col w-full justify-center items-center">
     <div
-      class="mx-auto grid grid-cols-1 w-5/6 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2"
+      class="mx-auto px-16 flex w-full lg:max-w-none justify-between"
     >
       <div class="max-w-xl lg:max-w-lg">
         <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
@@ -25,13 +25,13 @@
           />
           <button
             (click)="searchGithubUsers()"
-            class="flex-none rounded-md bg-purple-500 bg-opacity-40 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+            class="flex-none rounded-md text-white bg-purple-700 px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-purple-500"
           >
             Search
           </button>
         </div>
       </div>
-      <dl class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
+      <div class="flex gap-10 lg:pt-2 max-w-[600px]">
         <div class="flex flex-col items-start">
           <div class="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
             <svg
@@ -78,13 +78,14 @@
             Voluptate incididunt anim.
           </dd>
         </div>
-      </dl>
+      </div>
     </div>
     <app-dashboard
+      class="w-full"
       [dashboardData]="dashboardData"
       *ngIf="!loading && showDashboard"
     />
-    <app-loader class="w-5/6" *ngIf="loading" />
+    <app-loader class="w-full" *ngIf="loading" />
   </div>
   <div
     class="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6"
