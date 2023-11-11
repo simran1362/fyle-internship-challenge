@@ -1,10 +1,14 @@
+<!--  Main Profile Display Component -->
 <div class="mt-12 w-full overflow-x-hidden">
+  <!-- User Details Section -->
   <div class="flex flex-row gap-12 items-center">
+    <!-- Avatar Image -->
     <img
       class="inline-block h-48 w-48 ml-16 mt-12 mb-8 rounded-full ring-2 ring-white"
       [src]="profileData.avatar_url"
       alt=""
     />
+    <!-- Profile Data -->
     <div class="my-12 text-white">
       <h1 class="text-4xl">{{ profileData.name }}</h1>
       <div class="leading-6 flex flex-col">
@@ -12,6 +16,7 @@
           {{ profileData.bio }}
         </h3>
         <h4 class="mt-2 text-gray-300">📍 Location: {{ profileData.location }}</h4>
+        <!-- Twitter URL -->
         <a
           [href]="twitterUrl"
           *ngIf="profileData.twitter_username"
@@ -29,6 +34,7 @@
           </svg>
           {{ profileData.twitter_username }}</a
         >
+        <!-- Github URL -->
         <a [href]="profileData.html_url" class="flex gap-2 mt-1 text-gray-300">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -45,6 +51,7 @@
       </div>
     </div>
   </div>
+  <!-- Repositories View Section -->
   <div class="mx-16">
     <ul role="list" class="divide-y divide-gray-600">
       <li *ngFor="let repo of repoData">
@@ -52,22 +59,12 @@
       </li>
     </ul>
   </div>
+  <!-- Pagination Section -->
   <div
     class="flex items-center justify-between border-t border-gray-200 py-3 mx-16 relative"
   >
-    <div class="flex flex-1 justify-between sm:hidden">
-      <a
-        href="#"
-        class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >Previous</a
-      >
-      <a
-        href="#"
-        class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >Next</a
-      >
-    </div>
     <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+      <!-- Page Details -->
       <div>
         <p class="text-sm text-white">
           Showing
@@ -76,6 +73,7 @@
           <span class="font-bold">{{ totalPages }}</span>
         </p>
       </div>
+      <!-- Page Navigation Panel Display -->
       <div>
         <nav
           class="isolate inline-flex -space-x-px rounded-md shadow-sm"
@@ -130,6 +128,7 @@
       </div>
     </div>
   </div>
+  <!-- Page Size DropDown -->
   <div class="dropdown w-full flex justify-end px-16">
     <button
       class="text-white bg-purple-600 hover:bg-purple-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"

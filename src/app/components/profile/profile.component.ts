@@ -2,29 +2,40 @@ import { Component, Input } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
+
   constructor(private apiService: ApiService) {}
+  // User Data from Search Component
   @Input() profileData: any;
+  @Input() pageSize: number = 10;
+
   currentPage: number = 1;
   totalItems: number = 0;
-  @Input() pageSize: number = 10;
   totalPages: number = 1;
-  repoData: any;
   twitterUrl: string = '';
-  pageOptions: any = [10, 50, 100];
-  isOpen = false;
+  repoData: any; // Data from Repo API
+  pageOptions = [10, 50, 100];
+  isOpen = false; // Boolean for Dropdown
+
+  // Works on Page Load
   ngOnInit() {
-    this.getRepoData(this.profileData.repos_url);
+    this.getRepoData(this.profileData.repos_url); // Calling for Default Page Size
     this.totalItems = this.profileData.public_repos;
     this.totalPages = Math.ceil(
       this.totalItems / this.pageSize >= 0 ? this.totalItems / this.pageSize : 1
     );
     this.twitterUrl = `https://twitter.com/${this.profileData.twitter_username}`;
   }
+
+  /**
+   * @description Get Repo Data of the user
+   * @argument path repositories path of the user
+   * @returns void
+   */
   getRepoData(path: string) {
     this.apiService
       .getData(path + `?page=${this.currentPage}&per_page=${this.pageSize}`)
@@ -39,29 +50,53 @@ export class ProfileComponent {
         }
       );
   }
+
+  /**
+   * @description Increments current page and calls repo API
+   */
   nextPage() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.getRepoData(this.profileData.repos_url);
-      console.log(this.currentPage);
     }
   }
+  
+  /**
+   * @description Decrements current page and calls repo API
+   */
   previousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.getRepoData(this.profileData.repos_url);
     }
   }
+
+  /**
+   * @description Get array of numbers from 0 to n
+   * @param n 
+   * @returns Array
+   */
   getRange(n: number): number[] {
     return Array.from({ length: n }, (_, index) => index + 1);
   }
+
+  /**
+   * @description Sets current page to page and calls repo API
+   * @param page 
+   */
   setPage(page: number) {
     this.currentPage = page;
     this.getRepoData(this.profileData.repos_url);
   }
+
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  /**
+   * @description Sets page size to size and calls repo API
+   * @param size 
+   */
   setPageSize(size: number) {
     this.pageSize = size;
     this.getRepoData(this.profileData.repos_url);
@@ -71,6 +106,7 @@ export class ProfileComponent {
     );
     this.handleDropDown();
   }
+  
   handleDropDown() {
     this.isOpen = !this.isOpen;
   }

@@ -1,12 +1,16 @@
+<!-- Repo View Component -->
 <div class="flex flex-col w-full gap-2 my-5">
+  <!-- Repo Name -->
   <div class="w-full">
     <p class="text-2xl text-purple-400">{{ data.name }}</p>
   </div>
+  <!-- Repo Description -->
   <div class="flex justify-between w-full items-end">
     <div class="flex flex-col gap-2 w-4/5">
       <p class="w-5/6 text-sm text-gray-300">
         {{ data.description !== null ? data.description : "No Description" }}
       </p>
+      <!-- Tags Display from Tag Data-->
       <div class="flex gap-2">
         <button
         class="bg-purple-500 bg-opacity-10 text-purple-400 rounded-lg mt-2 px-4 py-1.5"
@@ -16,6 +20,7 @@
       </button>
       </div>
     </div>
+    <!-- Last Commit Details -->
     <div class="text-end w-1/5">
       <div class="text-xs min-w-[150px] text-gray-500 mt-5 text-end">
         Last commit&nbsp;<time datetime="2023-01-23T13:23Z">{{

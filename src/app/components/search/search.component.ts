@@ -9,18 +9,19 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class SearchComponent {
+
   constructor(private apiService: ApiService, private toastr: ToastrService) {}
 
   githubUsername = '';
-  public profileData: any;
-  public showDashboard: boolean = false;
+  public profileData: any; // Profile Data from API
+  public showProfile: boolean = false;
   public loading: boolean = false;
 
-  ngOnInit() {
-    // Your initialization code here
-  }
-
+  /**
+   * @description Call Github API for getting github user data
+   */
   searchGithubUsers() {
+    // Toastr for showcasing warnings
     if (this.githubUsername === "") {
       this.toastr.warning('Please enter a username!', 'Warning');
     }
@@ -31,7 +32,7 @@ export class SearchComponent {
           this.profileData = res;
           setTimeout(() => {
             this.loading = false;
-            this.showDashboard = true;
+            this.showProfile = true;
           }, 1000);
         },
         (error) => {

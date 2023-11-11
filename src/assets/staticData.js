@@ -1,3 +1,4 @@
+// User Static Data from Github API
 const UserData = [
   {
     login: "johnpapa",
@@ -38,7 +39,6 @@ const UserData = [
 ];
 
 // Repo Structure
-
 const RepoData = [
   {
     id: 439404592,
@@ -172,6 +172,7 @@ const RepoData = [
   },
 ];
 
+// Tags Static Data 
 const tagData = [
   {
     name: "material",
