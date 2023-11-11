@@ -1,33 +1,44 @@
-import { Component, Input } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
+
 export class SearchComponent {
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private toastr: ToastrService) {}
+
   githubUsername = '';
-  public dashboardData: any;
+  public profileData: any;
   public showDashboard: boolean = false;
-  ngOnInit() {}
   public loading: boolean = false;
+
+  ngOnInit() {
+    // Your initialization code here
+  }
+
   searchGithubUsers() {
-    this.loading = true;
-    if (this.githubUsername) {
-      console.log(this.githubUsername);
-      this.apiService.getUser(this.githubUsername).subscribe((res) => {
-        console.log(res);
-        this.dashboardData = res;
-        setTimeout(() => {
+    if (this.githubUsername === "") {
+      this.toastr.warning('Please enter a username!', 'Warning');
+    }
+    else {
+      this.loading = true;
+      this.apiService.getUser(this.githubUsername).subscribe(
+        (res) => {
+          this.profileData = res;
+          setTimeout(() => {
+            this.loading = false;
+            this.showDashboard = true;
+          }, 1000);
+        },
+        (error) => {
           this.loading = false;
-          this.showDashboard = true;
-        },1000)
-      },(error) => {
-        alert(error);
-        this.loading = false;
-      })
+          this.toastr.error('Unable to fetch user from Github!', 'Error Message');
+        }
+      );
     }
   }
 }
