@@ -1,5 +1,5 @@
 <!--  Main Profile Display Component -->
-<div class="mt-12 w-full overflow-x-hidden">
+<div class="mt-12 w-full mb-20">
   <!-- User Details Section -->
   <div class="flex flex-row gap-12 items-center">
     <!-- Avatar Image -->
@@ -129,7 +129,7 @@
     </div>
   </div>
   <!-- Page Size DropDown -->
-  <div class="dropdown w-full flex justify-end px-16">
+  <div class="relative dropdown w-full flex justify-end px-16">
     <button
       class="text-white bg-purple-600 hover:bg-purple-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
       (click)="handleDropDown()"
@@ -163,9 +163,8 @@
         shadow: true,
         block: isOpen,
         hidden: !isOpen,
-        'absolute': true,
       }"
-      class="bottom-0"
+      class="top-10 absolute"
     >
       <ul class="z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow">
         <li *ngFor="let i of pageOptions">
