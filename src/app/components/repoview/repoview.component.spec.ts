@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { RepoviewComponent } from './repoview.component';
 
@@ -8,7 +9,8 @@ describe('RepoviewComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RepoviewComponent]
+      declarations: [RepoviewComponent],
+      imports: [HttpClientTestingModule],
     });
     fixture = TestBed.createComponent(RepoviewComponent);
     component = fixture.componentInstance;

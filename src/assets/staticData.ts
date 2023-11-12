@@ -1,5 +1,5 @@
 // User Static Data from Github API
-const UserData = [
+export const UserData = [
   {
     login: "johnpapa",
     id: 1202528,

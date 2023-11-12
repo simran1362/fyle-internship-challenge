@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DropdownModule } from '@coreui/angular';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './components/search/search.component';
@@ -28,7 +27,6 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     NgxTypedJsModule,
     CommonModule,
-    DropdownModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
   ],

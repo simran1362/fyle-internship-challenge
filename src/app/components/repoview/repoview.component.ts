@@ -17,7 +17,7 @@ export class RepoviewComponent {
 
   // Works on Page Load
   ngOnInit() {
-    this.getTagData(this.data.tags_url);
+    this.getTagData(this.data?.tags_url);
   }
 
   /**
@@ -28,7 +28,7 @@ export class RepoviewComponent {
     this.apiService.getData(path).subscribe(
       (data: any) => {
         console.log(data, 'tagData');
-        this.tagData = data.slice(0, 5);
+        this.tagData = data?.slice(0, 5);
       },
       (error) => {
         console.log(error);
@@ -38,7 +38,7 @@ export class RepoviewComponent {
 
   /**
    * @description Returns Elapsed time from updated_at timestamp
-   * @param updatedAt 
+   * @param updatedAt
    * @returns Time difference
    */
   getElapsedTime(updatedAt: string) {
@@ -49,8 +49,8 @@ export class RepoviewComponent {
 
   /**
    * @description Time difference string
-   * @param current 
-   * @param previous 
+   * @param current
+   * @param previous
    * @returns string
    */
   timeDifference(current: string, previous: string) {

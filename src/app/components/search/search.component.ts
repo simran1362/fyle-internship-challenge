@@ -7,9 +7,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-
 export class SearchComponent {
-
   constructor(private apiService: ApiService, private toastr: ToastrService) {}
 
   githubUsername = '';
@@ -22,12 +20,11 @@ export class SearchComponent {
    */
   searchGithubUsers() {
     // Toastr for showcasing warnings
-    if (this.githubUsername === "") {
+    if (this.githubUsername === '') {
       this.toastr.warning('Please enter a username!', 'Warning');
-    }
-    else {
+    } else {
       this.loading = true;
-      this.apiService.getUser(this.githubUsername).subscribe(
+      this.apiService.getUser(this.githubUsername)?.subscribe(
         (res) => {
           this.profileData = res;
           setTimeout(() => {
@@ -37,7 +34,10 @@ export class SearchComponent {
         },
         (error) => {
           this.loading = false;
-          this.toastr.error('Unable to fetch user from Github!', 'Error Message');
+          this.toastr.error(
+            'Unable to fetch user from Github!',
+            'Error Message'
+          );
         }
       );
     }

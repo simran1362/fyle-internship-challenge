@@ -22,12 +22,12 @@ export class ProfileComponent {
 
   // Works on Page Load
   ngOnInit() {
-    this.getRepoData(this.profileData.repos_url); // Calling for Default Page Size
-    this.totalItems = this.profileData.public_repos;
+    this.getRepoData(this.profileData?.repos_url); // Calling for Default Page Size
+    this.totalItems = this.profileData?.public_repos;
     this.totalPages = Math.ceil(
       this.totalItems / this.pageSize >= 0 ? this.totalItems / this.pageSize : 1
     );
-    this.twitterUrl = `https://twitter.com/${this.profileData.twitter_username}`;
+    this.twitterUrl = `https://twitter.com/${this.profileData?.twitter_username}`;
   }
 
   /**
