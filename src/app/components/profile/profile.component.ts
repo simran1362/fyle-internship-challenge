@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +8,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private toastr: ToastrService) {}
   // User Data from Search Component
   @Input() profileData: any;
   @Input() pageSize: number = 10;
@@ -45,7 +46,10 @@ export class ProfileComponent {
           this.scrollToTop();
         },
         (error) => {
-          alert(error);
+          this.toastr.error(
+            'Unable to fetch user from Github!',
+            'Error Message'
+          );
         }
       );
   }
