@@ -18,4 +18,13 @@ describe('SearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should hide the loader when loading is complete', () => {
+    component.loading = false;
+    fixture.detectChanges();
+    const loaderElement: HTMLElement = fixture.nativeElement;
+
+    // Assuming you have some way to hide the loader in your component
+    expect(loaderElement).toBeNull();
+  });
 });

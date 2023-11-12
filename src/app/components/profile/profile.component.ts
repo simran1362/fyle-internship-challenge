@@ -7,7 +7,6 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
-
   constructor(private apiService: ApiService) {}
   // User Data from Search Component
   @Input() profileData: any;
@@ -60,7 +59,7 @@ export class ProfileComponent {
       this.getRepoData(this.profileData.repos_url);
     }
   }
-  
+
   /**
    * @description Decrements current page and calls repo API
    */
@@ -73,7 +72,7 @@ export class ProfileComponent {
 
   /**
    * @description Get array of numbers from 0 to n
-   * @param n 
+   * @param n
    * @returns Array
    */
   getRange(n: number): number[] {
@@ -82,10 +81,16 @@ export class ProfileComponent {
 
   /**
    * @description Sets current page to page and calls repo API
-   * @param page 
+   * @param page
    */
   setPage(page: number) {
-    this.currentPage = page;
+    if (page === -1) {
+      // Clicked on ellipsis, expand the displayed pages range
+      this.currentPage = this.currentPage + this.displayedPageSize + 1;
+    } else {
+      // Clicked on a regular page, set the current page
+      this.currentPage = page;
+    }
     this.getRepoData(this.profileData.repos_url);
   }
 
@@ -95,7 +100,7 @@ export class ProfileComponent {
 
   /**
    * @description Sets page size to size and calls repo API
-   * @param size 
+   * @param size
    */
   setPageSize(size: number) {
     this.pageSize = size;
@@ -106,8 +111,41 @@ export class ProfileComponent {
     );
     this.handleDropDown();
   }
-  
+
   handleDropDown() {
     this.isOpen = !this.isOpen;
+  }
+  /**
+   * @description returns pages array with all pages and if pages size exceeds page size then returns array with a -1 to display ...
+   * @returns number[] array of pages
+   */
+  displayedPageSize = 5;
+  get displayedPages(): number[] {
+    const pages = [];
+    pages.push(1);
+
+    if (this.currentPage - this.displayedPageSize > 2) {
+      pages.push(-1);
+    }
+
+    const start = Math.max(2, this.currentPage - this.displayedPageSize);
+    const end = Math.min(
+      this.totalPages - 1,
+      this.currentPage + this.displayedPageSize
+    );
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+
+    if (this.totalPages - this.currentPage - this.displayedPageSize > 1) {
+      pages.push(-1);
+    }
+
+    if (this.totalPages > 1) {
+      pages.push(this.totalPages);
+    }
+
+    return pages;
   }
 }
