@@ -12,30 +12,6 @@ export class RepoviewComponent {
   // User Data from Profile Component
   @Input() data: any;
 
-  // Data from topics API
-  topicData: any;
-
-  // Works on Page Load
-  ngOnInit() {
-    this.getTopicData(this.data?.topics);
-  }
-
-  /**
-   * @description Get Topic data of the user
-   * @param path
-   */
-  getTopicData(path: string) {
-    this.apiService.getData(path).subscribe(
-      (data: any) => {
-        // console.log('Topic Data:', data); // Log the data received from the API
-        this.topicData = data.slice(0, 5);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-
   /**
    * @description Returns Elapsed time from updated_at timestamp
    * @param updatedAt

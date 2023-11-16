@@ -42,6 +42,7 @@ describe('ApiService', () => {
       twitter_username: 'john_papa',
     };
 
+    // Make the actual HTTP request
     service.getUser(githubUsername).subscribe((userData: any) => {
       expect(userData.name).toBe(expectedUserData.name);
       expect(userData.location).toBe(expectedUserData.location);
@@ -49,22 +50,27 @@ describe('ApiService', () => {
       expect(userData.twitter_username).toBe(expectedUserData.twitter_username);
     });
 
+    // Set up the mock request
     const req = httpMock.expectOne(
       `https://api.github.com/users/${githubUsername}`
     );
     expect(req.request.method).toBe('GET');
 
+    // Respond to the request with the expected user data
     req.flush(expectedUserData, { status: 200, statusText: 'OK' });
   });
 
   it('should make a GET request with the provided API path', () => {
     const apiPath = 'https://api.github.com/users/johnpapa';
 
+    // Make the actual HTTP request
     service.getData(apiPath).subscribe();
 
+    // Set up the mock request
     const req = httpMock.expectOne(apiPath);
     expect(req.request.method).toBe('GET');
 
+    // Flush a dummy response
     req.flush({ status: 'OK' }, { status: 200, statusText: 'OK' });
   });
 });

@@ -60,9 +60,8 @@ export class ProfileComponent {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.getRepoData(this.profileData.repos_url);
-      this.scrollToTop(); // Call scrollToTop after fetching the data
     }
-  }  
+  }
 
   /**
    * @description Decrements current page and calls repo API
@@ -71,9 +70,8 @@ export class ProfileComponent {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.getRepoData(this.profileData.repos_url);
-      this.scrollToTop(); // Call scrollToTop after fetching the data
     }
-  }  
+  }
 
   /**
    * @description Get array of numbers from 0 to n
@@ -100,8 +98,10 @@ export class ProfileComponent {
   }
 
   scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }  
+    // window.scrollTo({ top: 0, behavior: 'smooth' });
+    var scrollElem: Element | null = document.querySelector('#user-details');
+    scrollElem?.scrollIntoView({ behavior: 'smooth' });
+  }
 
   /**
    * @description Sets page size to size and calls repo API
