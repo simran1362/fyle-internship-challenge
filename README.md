@@ -36,5 +36,9 @@ You will hear back within 48 hours from us via email.
 ## Development server
 
 1. Run `npm i` to install all the related packages. 
-2. Run `ng serve` for a initialization dev server.
+2. Run `ng serve` for the initialization of the dev server.
 3. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+
+## Test Cases
+
+1. Run `ng test` to run the test cases.
