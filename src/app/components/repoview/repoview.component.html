@@ -18,15 +18,14 @@
         {{ data?.description !== null ? data?.description : "No Description" }}
       </p>
       <!-- Tags Display from Tag Data-->
-      <div class="flex gap-2 items-center">
+      <div class="flex flex-wrap gap-2 items-center">
         <button
           class="bg-purple-500 bg-opacity-10 text-purple-400 rounded-lg px-4 py-1.5"
-          *ngFor="let tag of tagData"
+          *ngFor="let topic of data?.topics"
         >
-          {{ tag?.name }}
+          {{ topic }}
         </button>
         <!--Stars-->
-
         <div class="text-white flex gap-1 items-center justify-center">
           ✩
           {{ data?.stargazers_count }}

@@ -12,23 +12,23 @@ export class RepoviewComponent {
   // User Data from Profile Component
   @Input() data: any;
 
-  // Data from tags API
-  tagData: any;
+  // Data from topics API
+  topicData: any;
 
   // Works on Page Load
   ngOnInit() {
-    this.getTagData(this.data?.tags_url);
+    this.getTopicData(this.data?.topics);
   }
 
   /**
-   * @description Get Tag data of the user
+   * @description Get Topic data of the user
    * @param path
    */
-  getTagData(path: string) {
+  getTopicData(path: string) {
     this.apiService.getData(path).subscribe(
       (data: any) => {
-        console.log(data, 'tagData');
-        this.tagData = data?.slice(0, 5);
+        // console.log('Topic Data:', data); // Log the data received from the API
+        this.topicData = data.slice(0, 5);
       },
       (error) => {
         console.log(error);
